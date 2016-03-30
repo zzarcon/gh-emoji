@@ -1,0 +1,22 @@
+{
+  "name": "gh-emoji",
+  "version": "0.1.0",
+  "description": "Github emoji parsing done right",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzarcon/gh-emoji.git"
+  },
+  "author": "zzarcon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zzarcon/gh-emoji/issues"
+  },
+  "homepage": "https://github.com/zzarcon/gh-emoji#readme",
+  "devDependencies": {
+    "relaser": "^0.2.0"
+  }
+}
