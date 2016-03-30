@@ -1,11 +1,9 @@
 {
   "name": "gh-emoji",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Github emoji parsing done right",
   "main": "index.js",
-  "scripts": {
-    
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zzarcon/gh-emoji.git"
