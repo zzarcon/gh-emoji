@@ -1,1 +1,0 @@
-console.error("Error: Cannot find module '/Users/HEZ/code/gh-emoji/app.js' from '/Users/HEZ/code/gh-emoji'");
