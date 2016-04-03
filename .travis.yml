@@ -13,3 +13,5 @@ script:
   - npm test
 notifications:
   email: false
+service_name: travis-pro
+repo_token: KHAfF8IeFeQcRdcmpi4J4EZVVZVan4ccW
