@@ -1,0 +1,53 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  padding: 10px;
+  font-size: 20px;
+  font-family: Verdana;
+  display: flex;
+  flex-direction: column;
+}
+.lib-name{
+  color: cornflowerblue;
+  text-decoration: none;
+}
+.lib-name:hover{
+  text-decoration: underline;
+}
+.title{
+  font-size: 30px;
+  padding: 0 10px 10px 10px;
+}
+.content{
+  display: flex;
+  height: calc(100% - 50px);
+}
+textarea{
+  outline: none;
+  resize: none;
+  font-size: 20px;
+}
+#editor, #preview{
+  flex: 1;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#editor{
+  margin-right: 10px;
+}
+#preview{
+  margin-left: 10px;
+  overflow: auto;
+}
+
+.gh-emoji{
+  height: 30px;
+}

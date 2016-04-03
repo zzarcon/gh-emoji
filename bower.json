@@ -1,0 +1,22 @@
+{
+  "name": "gh-emoji-demo",
+  "version": "0.1.0",
+  "description": "Github emoji parsing done right",
+  "main": "dist/gh-emoji.js",
+  "authors": [
+    "zzarcon"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zzarcon/gh-emoji",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gh-emoji": "^0.2.3"
+  }
+}
