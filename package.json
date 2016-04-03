@@ -2,7 +2,7 @@
   "name": "gh-emoji",
   "version": "0.2.0",
   "description": "Github emoji parsing done right",
-  "main": "gh-emoji.js",
+  "main": "dist/gh-emoji.js",
   "scripts": {
     "dist": "babel gh-emoji.js --presets es2015 --out-file dist/gh-emoji.js",
     "test": "npm run test:browser",
