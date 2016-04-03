@@ -25,7 +25,7 @@ load().then(() => {
 ## Demo
 Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 
-TODO: Put gif using the demo page
+![](https://raw.github.com/zzarcon/gh-emoji/master/gh-emoji-demo.gif)
 
 ## Methods
 
