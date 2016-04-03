@@ -6,7 +6,7 @@ export function load() {
   return new Promise((resolve) => {
     if (emojis) return resolve(emojis);
 
-    fetch(enpoint).then(r => r.json()).then((response) => {
+    return fetch(enpoint).then(r => r.json()).then((response) => {
       emojis = response;
       resolve(emojis);
     });
@@ -25,24 +25,16 @@ export function getUrl(emojiId) {
   return all()[emojiId];
 }
 
-/**
- * TODO: Suport options
- * TODO: Suport custom classnames
- * @param {String} text    
- * @param {Object} options 
- * @return {Promise}         
- */
-export function parse(text, options) {
+export function parse(text) {
   let output = '';
-  output += text.replace(delimiterRegex, (match, text, offset, string) => {
-    let id = match.replace(/:/g, '');
+  output += text.replace(delimiterRegex, (match) => {
+    const id = match.replace(/:/g, '');
     if (exist(id)) {
-      let classNames = `gh-emoji gh-emoji-${id}`;
+      const classNames = `gh-emoji gh-emoji-${id}`;
       return `<img src="${getUrl(id)}" class="${classNames}" alt="${id}" />`;
-    } else {
-      return match;
     }
+    return match;
   });
 
-  return output
-};
+  return output;
+}
