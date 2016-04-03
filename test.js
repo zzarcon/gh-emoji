@@ -1,4 +1,4 @@
-import {load, all, exist, getUrl, parse} from './index';
+import {load, all, exist, getUrl, parse} from './gh-emoji';
 import tapeTest from 'tape';
 
 function before() {
