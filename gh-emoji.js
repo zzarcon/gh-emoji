@@ -27,13 +27,15 @@ export function getUrl(emojiId) {
 
 export function parse(text) {
   let output = '';
-  output += text.replace(delimiterRegex, (match) => {
+  output += text.replace(delimiterRegex, match => {
     const id = match.replace(/:/g, '');
-    if (exist(id)) {
-      const classNames = `gh-emoji gh-emoji-${id}`;
-      return `<img src="${getUrl(id)}" class="${classNames}" alt="${id}" />`;
+
+    if (!exist(id)) {
+      return match;
     }
-    return match;
+
+    const classNames = `gh-emoji gh-emoji-${id}`;
+    return `<img src="${getUrl(id)}" class="${classNames}" alt="${id}" />`;
   });
 
   return output;
