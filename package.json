@@ -26,5 +26,8 @@
     "browserify": "^13.0.0",
     "gh-emoji": "0.2.3",
     "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "textcomplete": "0.7.1"
   }
 }

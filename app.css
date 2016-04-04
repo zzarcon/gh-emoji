@@ -51,3 +51,22 @@ textarea{
 .gh-emoji{
   height: 30px;
 }
+
+.textcomplete-dropdown {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  list-style: none;
+}
+
+.textcomplete-item {
+  padding: 10px;
+}
+
+.textcomplete-item .gh-emoji {
+  vertical-align: bottom;
+}
+
+.textcomplete-item:not(:last-child) {
+  border-bottom: 1px solid #ccc
+}
