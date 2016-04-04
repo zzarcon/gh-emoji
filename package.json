@@ -39,7 +39,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "eslint gh-emoji.js && npm run dist"
+      "pre-commit": "eslint gh-emoji.js"
     }
   }
 }
