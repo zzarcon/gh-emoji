@@ -48,7 +48,7 @@
   }
 
   function autocomplete() {
-    var unfinishedEmojiRegex = /(^|\s):(\w+)$/;
+    var unfinishedEmojiRegex = /(^|\s)[^:]+:(\w+)$/;
     var emojiNames = Object.keys((0, _ghEmoji.all)());
 
     var editorElement = document.getElementById('editor');
