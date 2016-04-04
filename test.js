@@ -48,8 +48,13 @@ test('getUrl', assert => {
 });
 
 test('parse', assert => {
+  const testOptions = { classNames: 'some crazy  string with      classes' };
+
   assert.ok(parse(':bicyclist:') === '<img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b4.png?v6" class="gh-emoji gh-emoji-bicyclist" alt="bicyclist" />',
     'string is properly parsed'
+  );
+  assert.ok(parse(':bicyclist:', testOptions) === '<img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b4.png?v6" class="gh-emoji gh-emoji-bicyclist some crazy string with classes" alt="bicyclist" />',
+    'string is properly parsed and passed classes are added to it'
   );
   assert.ok(parse('foo :barber: bar :bell:').includes(
     'https://assets-cdn.github.com/images/icons/emoji/unicode/1f514.png?v6'),
