@@ -48,7 +48,7 @@
   }
 
   function autocomplete() {
-    var unfinishedEmojiRegex = /(^|\s)[^:]+:(\w+)$/;
+    var unfinishedEmojiRegex = /(^|\s)[^:]*:(\w+)$/;
     var emojiNames = Object.keys((0, _ghEmoji.all)());
 
     var editorElement = document.getElementById('editor');
@@ -63,6 +63,8 @@
     textcomplete.register([{
       match: unfinishedEmojiRegex,
       search: function search(term, callback) {
+        console.log(term);
+
         callback(emojiNames.filter(function (emoji) {
           return emoji.startsWith(term);
         }).map(function (emoji) {
