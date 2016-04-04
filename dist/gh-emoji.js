@@ -56,17 +56,21 @@
     var output = '';
     output += text.replace(delimiterRegex, function (match) {
       var name = match.replace(/:/g, '');
-      var classNames = ['gh-emoji', 'gh-emoji-' + name].concat();
+      var classNames = ['gh-emoji', 'gh-emoji-' + name];
 
       if (!exist(name)) {
         return match;
       }
 
       if (options.classNames) {
-        classNames.concat(options.classNames.trim().split(/\s+/));
+        [].push.apply(classNames, options.classNames.trim().split(/\s+/));
       }
 
-      return '<img src="' + getUrl(name) + '" class="' + classNames + '" alt="' + name + '" />';
+      var imageSrc = getUrl(name);
+      var imageClass = classNames.join(' ');
+      var imageAlt = name;
+
+      return '<img src="' + imageSrc + '" class="' + imageClass + '" alt="' + imageAlt + '" />';
     });
 
     return output;
