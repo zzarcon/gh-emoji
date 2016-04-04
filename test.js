@@ -48,6 +48,9 @@ test('getUrl', assert => {
 });
 
 test('parse', assert => {
+  assert.ok(parse('No emoji present') === 'No emoji present',
+    'return the same string if no emoji is present'
+  );
   assert.ok(parse(':bicyclist:') === '<img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b4.png?v6" class="gh-emoji gh-emoji-bicyclist" alt="bicyclist" />',
     'string is properly parsed'
   );
