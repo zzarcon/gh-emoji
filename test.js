@@ -35,12 +35,12 @@ test('exist', assert => {
 });
 
 test('getUrl', assert => {
-  assert.ok(getUrl('angel') ===
-    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f47c.png?v6',
+  assert.ok(getUrl('angel').startsWith(
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f47c.png'),
     'angel emoji must return url'
   );
-  assert.ok(getUrl('baby') ===
-    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f476.png?v6',
+  assert.ok(getUrl('baby').startsWith(
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f476.png'),
     'baby emoji must return url'
   );
   assert.ok(!getUrl('fakeEmoji'), 'fakeEmoji emoji must not return url');
@@ -52,11 +52,11 @@ test('parse', assert => {
     'string is properly parsed'
   );
   assert.ok(parse('foo :barber: bar :bell:').includes(
-    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f514.png?v6'),
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f514.png'),
     'parsed string includes url of emoji'
   );
   assert.ok(parse('foo :barber: bar :bell:').includes(
-    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png?v6'),
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
     'parsed string includes url of emoji'
   );
   assert.end();
