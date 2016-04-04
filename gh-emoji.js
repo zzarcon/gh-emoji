@@ -25,17 +25,25 @@ export function getUrl(emojiId) {
   return all()[emojiId];
 }
 
-export function parse(text) {
+export function parse(text, options = {}) {
   let output = '';
   output += text.replace(delimiterRegex, match => {
-    const id = match.replace(/:/g, '');
+    const name = match.replace(/:/g, '');
+    const classNames = ['gh-emoji', `gh-emoji-${name}`];
 
-    if (!exist(id)) {
+    if (!exist(name)) {
       return match;
     }
 
-    const classNames = `gh-emoji gh-emoji-${id}`;
-    return `<img src="${getUrl(id)}" class="${classNames}" alt="${id}" />`;
+    if (options.classNames) {
+      [].push.apply(classNames, options.classNames.trim().split(/\s+/));
+    }
+
+    const imageSrc = getUrl(name);
+    const imageClass = classNames.join(' ');
+    const imageAlt = name;
+
+    return `<img src="${imageSrc}" class="${imageClass}" alt="${imageAlt}" />`;
   });
 
   return output;

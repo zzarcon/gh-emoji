@@ -22,14 +22,14 @@
   exports.getUrl = getUrl;
   exports.parse = parse;
   var enpoint = 'https://api.github.com/emojis';
-  var delimiter_regex = /(\:[\w\.]*\:)/g;
+  var delimiterRegex = /(\:[\w\.]*\:)/g;
   var emojis = null;
 
   function load() {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
       if (emojis) return resolve(emojis);
 
-      fetch(enpoint).then(function (r) {
+      return fetch(enpoint).then(function (r) {
         return r.json();
       }).then(function (response) {
         emojis = response;
@@ -50,25 +50,25 @@
     return all()[emojiId];
   }
 
-  /**
-   * TODO: Suport options
-   * TODO: Suport custom classnames
-   * @param  {String} text    
-   * @param  {Object} options 
-   * @return {Promise}         
-   */
-  function parse(text, options) {
+  function parse(text) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
     var output = '';
-    output += text.replace(delimiter_regex, function (match, text, offset, string) {
-      var id = match.replace(/:/g, '');
-      if (exist(id)) {
-        var classNames = 'gh-emoji gh-emoji-' + id;
-        return '<img src="' + getUrl(id) + '" class="' + classNames + '" alt="' + id + '" />';
-      } else {
+    output += text.replace(delimiterRegex, function (match) {
+      var name = match.replace(/:/g, '');
+      var classNames = ['gh-emoji', 'gh-emoji-' + name].concat();
+
+      if (!exist(name)) {
         return match;
       }
+
+      if (options.classNames) {
+        classNames.concat(options.classNames.trim().split(/\s+/));
+      }
+
+      return '<img src="' + getUrl(name) + '" class="' + classNames + '" alt="' + name + '" />';
     });
 
     return output;
-  };
+  }
 });
