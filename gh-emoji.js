@@ -27,6 +27,8 @@ export function getUrl(emojiId) {
 
 export function parse(text, options = {}) {
   let output = '';
+  const customClassNames = options.classNames ? options.classNames.trim().split(/\s+/) : '';
+
   output += text.replace(delimiterRegex, match => {
     const name = match.replace(/:/g, '');
     const classNames = ['gh-emoji', `gh-emoji-${name}`];
@@ -35,8 +37,8 @@ export function parse(text, options = {}) {
       return match;
     }
 
-    if (options.classNames) {
-      [].push.apply(classNames, options.classNames.trim().split(/\s+/));
+    if (customClassNames) {
+      classNames.push(...customClassNames);
     }
 
     const imageSrc = getUrl(name);
