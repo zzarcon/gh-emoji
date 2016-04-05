@@ -51,14 +51,26 @@
   }
 
   function parse(text) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
     var output = '';
     output += text.replace(delimiterRegex, function (match) {
-      var id = match.replace(/:/g, '');
-      if (exist(id)) {
-        var classNames = 'gh-emoji gh-emoji-' + id;
-        return '<img src="' + getUrl(id) + '" class="' + classNames + '" alt="' + id + '" />';
+      var name = match.replace(/:/g, '');
+      var classNames = ['gh-emoji', 'gh-emoji-' + name];
+
+      if (!exist(name)) {
+        return match;
       }
-      return match;
+
+      if (options.classNames) {
+        [].push.apply(classNames, options.classNames.trim().split(/\s+/));
+      }
+
+      var imageSrc = getUrl(name);
+      var imageClass = classNames.join(' ');
+      var imageAlt = name;
+
+      return '<img src="' + imageSrc + '" class="' + imageClass + '" alt="' + imageAlt + '" />';
     });
 
     return output;
