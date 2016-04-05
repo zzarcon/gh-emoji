@@ -27,26 +27,10 @@ Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 
 ![](https://raw.githubusercontent.com/zzarcon/gh-emoji/master/assets/gh-emoji-demo.gif)
 
-# References
-
-* Github Emoji Api docs: https://developer.github.com/v3/emojis/
-* Github Emoji Api: https://api.github.com/emojis
-* All Github Emoji icons: https://github.com/scotch-io/All-Github-Emoji-Icons
-
-# Browser Support
-
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/chrome/chrome_64x64.png" width="48px" height="48px" alt="Chrome logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/firefox/firefox_64x64.png" width="48px" height="48px" alt="Firefox logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/opera/opera_64x64.png" width="48px" height="48px" alt="Opera logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/safari/safari_64x64.png" width="48px" height="48px" alt="Safari logo"> |
-|:---:|:---:|:---:|:---:|:---:|
-| Latest ✔ | Latest ✔ | IE 9+ ✔ | Latest ✔ | Latest ✔ |
-
-# License
-
-[MIT License](https://tldrlegal.com/license/mit-license) © zzarcon
-
 # API
 # all
 
-[gh-emoji.js:42-44](https://github.com/zzarcon/gh-emoji/blob/86e0bc0ed058ac87cc50a9ac355aca63cc0990a4/gh-emoji.js#L42-L44 "Source code on GitHub")
+[gh-emoji.js:42-44](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L42-L44 "Source code on GitHub")
 
 Return all fetched emojis.
 
@@ -65,7 +49,7 @@ as values.
 
 # exist
 
-[gh-emoji.js:59-61](https://github.com/zzarcon/gh-emoji/blob/86e0bc0ed058ac87cc50a9ac355aca63cc0990a4/gh-emoji.js#L59-L61 "Source code on GitHub")
+[gh-emoji.js:59-61](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L59-L61 "Source code on GitHub")
 
 Check if requested emoji exists.
 
@@ -84,7 +68,7 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 # getUrl
 
-[gh-emoji.js:75-77](https://github.com/zzarcon/gh-emoji/blob/86e0bc0ed058ac87cc50a9ac355aca63cc0990a4/gh-emoji.js#L75-L77 "Source code on GitHub")
+[gh-emoji.js:75-77](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L75-L77 "Source code on GitHub")
 
 Return github's image url of emoji.
 
@@ -102,7 +86,7 @@ Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 # load
 
-[gh-emoji.js:18-27](https://github.com/zzarcon/gh-emoji/blob/86e0bc0ed058ac87cc50a9ac355aca63cc0990a4/gh-emoji.js#L18-L27 "Source code on GitHub")
+[gh-emoji.js:18-27](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L18-L27 "Source code on GitHub")
 
 Fetch the emoji data from Github's api.
 
@@ -121,7 +105,7 @@ as keys and generated image tags as values to callback.
 
 # parse
 
-[gh-emoji.js:93-105](https://github.com/zzarcon/gh-emoji/blob/86e0bc0ed058ac87cc50a9ac355aca63cc0990a4/gh-emoji.js#L93-L105 "Source code on GitHub")
+[gh-emoji.js:93-105](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L93-L105 "Source code on GitHub")
 
 Parse text and replace emoji tags with actual emoji symbols.
 
@@ -138,3 +122,18 @@ loadEmojis().then(() => {
 ```
 
 Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Parsed text with emoji image tags in it.
+# References
+
+* Github Emoji Api docs: https://developer.github.com/v3/emojis/
+* Github Emoji Api: https://api.github.com/emojis
+* All Github Emoji icons: https://github.com/scotch-io/All-Github-Emoji-Icons
+
+# Browser Support
+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/chrome/chrome_64x64.png" width="48px" height="48px" alt="Chrome logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/firefox/firefox_64x64.png" width="48px" height="48px" alt="Firefox logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/opera/opera_64x64.png" width="48px" height="48px" alt="Opera logo"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/safari/safari_64x64.png" width="48px" height="48px" alt="Safari logo"> |
+|:---:|:---:|:---:|:---:|:---:|
+| Latest ✔ | Latest ✔ | IE 9+ ✔ | Latest ✔ | Latest ✔ |
+
+# License
+
+[MIT License](https://tldrlegal.com/license/mit-license) © zzarcon
