@@ -27,92 +27,6 @@ Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 
 ![](https://raw.githubusercontent.com/zzarcon/gh-emoji/master/assets/gh-emoji-demo.gif)
 
-## Methods
-
-### load
-Fetch the emoji data from Github
-
-```javascript
-import {load as loadEmojis} from 'gh-emoji';
-
-loadEmojis().then((emojis) => {
-  console.log(emojis['+1'] === 👍 === 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png?v6')
-});
-```
-
-Returns **Promise**
-### parse
-Converts text into parsed html containing the github emojis
-
-**parameters**
-
-* `text` **String**
-* `options` **Object**
-
-```javascript
-import {load, parse} from 'gh-emoji';
-
-const text = 'Do you believe in :alien:...? :scream:';
-load().then(() => {
-  console.log(parse(text) === 'Do you believe in 👽...? 😱');
-});
-
-```
-
-Returns **String**
-
-### all
-
-Return all existing emojis
-
-```javascript
-import {load, all} from 'gh-emoji';
-
-load().then(() => {
-  console.log(all());
-});
-
-```
-
-Returns **Object**
-
-### getUrl
-
-Return github image url of the emojiId
-
-**parameters**
-* `emojiId` **String**
-
-```javascript
-import {load, getUrl} from 'gh-emoji';
-
-load().then(() => {
-  console.log(getUrl('apple') === 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6');
-});
-
-```
-
-Returns **String**
-
-### exist
-
-Return if the requested emoji exist
-
-**parameters**
-* `emojiId` **String**
-
-```javascript
-import {load, exist} from 'gh-emoji';
-
-load().then(() => {
-  console.log(exist('foo')); // false
-  console.log(exist('smile')); // true
-});
-
-```
-
-Returns **Boolean**
-
 ## References
 
 * Github Emoji Api docs: https://developer.github.com/v3/emojis/
@@ -128,3 +42,97 @@ Returns **Boolean**
 ## License
 
 [MIT License](https://tldrlegal.com/license/mit-license) © zzarcon
+# all
+
+[gh-emoji.js:42-44](https://github.com/zzarcon/gh-emoji/blob/1cd558907d213eab269b396ee8fef2a29fb62ef7/gh-emoji.js#L42-L44 "Source code on GitHub")
+
+Return all fetched emojis.
+
+**Examples**
+
+```javascript
+import {load as loadEmojis, all as allEmojis} from 'gh-emoji';
+
+loadEmojis().then(() => {
+  console.log(allEmojis()); // {emojiName: emojiImageTag}
+});
+```
+
+Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object with emoji names as keys and generated image tags
+as values.
+
+# exist
+
+[gh-emoji.js:59-61](https://github.com/zzarcon/gh-emoji/blob/1cd558907d213eab269b396ee8fef2a29fb62ef7/gh-emoji.js#L59-L61 "Source code on GitHub")
+
+Check if requested emoji exists.
+
+**Examples**
+
+```javascript
+import {load as loadEmojis, exist as emojiExists} from 'gh-emoji';
+
+loadEmojis().then(() => {
+  console.log(emojiExists('foo')); // false
+  console.log(emojiExists('smile')); // true
+});
+```
+
+Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+# getUrl
+
+[gh-emoji.js:75-77](https://github.com/zzarcon/gh-emoji/blob/1cd558907d213eab269b396ee8fef2a29fb62ef7/gh-emoji.js#L75-L77 "Source code on GitHub")
+
+Return github's image url of emoji.
+
+**Examples**
+
+```javascript
+import {load as loadEmojis, getUrl} from 'gh-emoji';
+
+loadEmojis().then(() => {
+  console.log(getUrl('apple')); // 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6'
+});
+```
+
+Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Image url of given emoji.
+
+# load
+
+[gh-emoji.js:18-27](https://github.com/zzarcon/gh-emoji/blob/1cd558907d213eab269b396ee8fef2a29fb62ef7/gh-emoji.js#L18-L27 "Source code on GitHub")
+
+Fetch the emoji data from Github's api.
+
+**Examples**
+
+```javascript
+import {load as loadEmojis} from 'gh-emoji';
+
+loadEmojis().then((emojis) => {
+  console.log(emojis['+1']); // 👍
+});
+```
+
+Returns **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Promise which passes Object with emoji names
+as keys and generated image tags as values to callback.
+
+# parse
+
+[gh-emoji.js:93-105](https://github.com/zzarcon/gh-emoji/blob/1cd558907d213eab269b396ee8fef2a29fb62ef7/gh-emoji.js#L93-L105 "Source code on GitHub")
+
+Parse text and replace emoji tags with actual emoji symbols.
+
+**Examples**
+
+```javascript
+import {load as loadEmojis, parse} from 'gh-emoji';
+
+const text = 'Do you believe in :alien:...? :scream:';
+
+loadEmojis().then(() => {
+  console.log(parse(text)) // 'Do you believe in 👽...? 😱';
+});
+```
+
+Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Parsed text with emoji image tags in it.
