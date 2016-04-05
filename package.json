@@ -1,6 +1,6 @@
 {
   "name": "gh-emoji",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Github emoji parsing done right",
   "main": "dist/gh-emoji.js",
   "scripts": {
