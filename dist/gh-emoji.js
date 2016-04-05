@@ -16,14 +16,48 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.find = find;
   exports.load = load;
   exports.all = all;
   exports.exist = exist;
   exports.getUrl = getUrl;
   exports.parse = parse;
+
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  }
+
   var enpoint = 'https://api.github.com/emojis';
-  var delimiterRegex = /(\:[\w\.]*\:)/g;
+  var delimiterRegex = /(\:[\w\-\+]+\:)/g;
   var emojis = null;
+
+  /**
+   * Return array with matched emojis in text.
+   *
+   * @example
+   * import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
+   *
+   * const text = 'Do you believe in :alien:...? :scream:';
+   *
+   * loadEmojis().then((emojis) => {
+   *   console.log(findEmojis(text)); // [':alien:', ':scream:']
+   * });
+   *
+   * @param {String} text Text to search for emojis.
+   *
+   * @returns {Array<String>} Array with matched emojis.
+   */
+  function find(text) {
+    return text.match(delimiterRegex) || [];
+  }
 
   /**
    * Fetch the emoji data from Github's api.
@@ -79,6 +113,8 @@
    *   console.log(emojiExists('smile')); // true
    * });
    *
+   * @param {String} emojiId Name of emoji.
+   *
    * @returns {Boolean}
    */
   function exist(emojiId) {
@@ -94,6 +130,8 @@
    * loadEmojis().then(() => {
    *   console.log(getUrl('apple')); // 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6'
    * });
+   *
+   * @param {String} emojiId Name of emoji.
    *
    * @returns {String} Image url of given emoji.
    */
@@ -113,17 +151,34 @@
    *   console.log(parse(text)) // 'Do you believe in 👽...? 😱';
    * });
    *
+   * @param {String} text Text to parse.
+   * @param {Object} options Options with additional data for parser.
+   *
    * @returns {String} Parsed text with emoji image tags in it.
    */
   function parse(text) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
     var output = '';
+    var customClassNames = options.classNames ? options.classNames.trim().split(/\s+/) : '';
+
     output += text.replace(delimiterRegex, function (match) {
-      var id = match.replace(/:/g, '');
-      if (exist(id)) {
-        var classNames = 'gh-emoji gh-emoji-' + id;
-        return '<img src="' + getUrl(id) + '" class="' + classNames + '" alt="' + id + '" />';
+      var name = match.replace(/:/g, '');
+      var classNames = ['gh-emoji', 'gh-emoji-' + name];
+
+      if (!exist(name)) {
+        return match;
       }
-      return match;
+
+      if (customClassNames) {
+        classNames.push.apply(classNames, _toConsumableArray(customClassNames));
+      }
+
+      var imageSrc = getUrl(name);
+      var imageClass = classNames.join(' ');
+      var imageAlt = name;
+
+      return '<img src="' + imageSrc + '" class="' + imageClass + '" alt="' + imageAlt + '" />';
     });
 
     return output;

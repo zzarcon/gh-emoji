@@ -1,6 +1,26 @@
 const enpoint = 'https://api.github.com/emojis';
-const delimiterRegex = /(\:[\w\.]*\:)/g;
+const delimiterRegex = /(\:[\w\-\+]+\:)/g;
 let emojis = null;
+
+/**
+ * Return array with matched emojis in text.
+ *
+ * @example
+ * import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
+ *
+ * const text = 'Do you believe in :alien:...? :scream:';
+ *
+ * loadEmojis().then((emojis) => {
+ *   console.log(findEmojis(text)); // [':alien:', ':scream:']
+ * });
+ *
+ * @param {String} text Text to search for emojis.
+ *
+ * @returns {Array<String>} Array with matched emojis.
+ */
+export function find(text) {
+  return text.match(delimiterRegex) || [];
+}
 
 /**
  * Fetch the emoji data from Github's api.
@@ -54,6 +74,8 @@ export function all() {
  *   console.log(emojiExists('smile')); // true
  * });
  *
+ * @param {String} emojiId Name of emoji.
+ *
  * @returns {Boolean}
  */
 export function exist(emojiId) {
@@ -69,6 +91,8 @@ export function exist(emojiId) {
  * loadEmojis().then(() => {
  *   console.log(getUrl('apple')); // 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6'
  * });
+ *
+ * @param {String} emojiId Name of emoji.
  *
  * @returns {String} Image url of given emoji.
  */
@@ -88,17 +112,32 @@ export function getUrl(emojiId) {
  *   console.log(parse(text)) // 'Do you believe in 👽...? 😱';
  * });
  *
+ * @param {String} text Text to parse.
+ * @param {Object} options Options with additional data for parser.
+ *
  * @returns {String} Parsed text with emoji image tags in it.
  */
-export function parse(text) {
+export function parse(text, options = {}) {
   let output = '';
-  output += text.replace(delimiterRegex, (match) => {
-    const id = match.replace(/:/g, '');
-    if (exist(id)) {
-      const classNames = `gh-emoji gh-emoji-${id}`;
-      return `<img src="${getUrl(id)}" class="${classNames}" alt="${id}" />`;
+  const customClassNames = options.classNames ? options.classNames.trim().split(/\s+/) : '';
+
+  output += text.replace(delimiterRegex, match => {
+    const name = match.replace(/:/g, '');
+    const classNames = ['gh-emoji', `gh-emoji-${name}`];
+
+    if (!exist(name)) {
+      return match;
     }
-    return match;
+
+    if (customClassNames) {
+      classNames.push(...customClassNames);
+    }
+
+    const imageSrc = getUrl(name);
+    const imageClass = classNames.join(' ');
+    const imageAlt = name;
+
+    return `<img src="${imageSrc}" class="${imageClass}" alt="${imageAlt}" />`;
   });
 
   return output;

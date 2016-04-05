@@ -30,7 +30,7 @@ Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 # API
 # all
 
-[gh-emoji.js:42-44](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L42-L44 "Source code on GitHub")
+[gh-emoji.js:62-64](https://github.com/zzarcon/gh-emoji/blob/424d13cf2dc39b5204ecbff82996c589729af383/gh-emoji.js#L62-L64 "Source code on GitHub")
 
 Return all fetched emojis.
 
@@ -49,9 +49,13 @@ as values.
 
 # exist
 
-[gh-emoji.js:59-61](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L59-L61 "Source code on GitHub")
+[gh-emoji.js:81-83](https://github.com/zzarcon/gh-emoji/blob/424d13cf2dc39b5204ecbff82996c589729af383/gh-emoji.js#L81-L83 "Source code on GitHub")
 
 Check if requested emoji exists.
+
+**Parameters**
+
+-   `emojiId` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of emoji.
 
 **Examples**
 
@@ -64,13 +68,41 @@ loadEmojis().then(() => {
 });
 ```
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**
+
+# find
+
+[gh-emoji.js:21-23](https://github.com/zzarcon/gh-emoji/blob/424d13cf2dc39b5204ecbff82996c589729af383/gh-emoji.js#L21-L23 "Source code on GitHub")
+
+Return array with matched emojis in text.
+
+**Parameters**
+
+-   `text` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Text to search for emojis.
+
+**Examples**
+
+```javascript
+import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
+
+const text = 'Do you believe in :alien:...? :scream:';
+
+loadEmojis().then((emojis) => {
+  console.log(findEmojis(text)); // [':alien:', ':scream:']
+});
+```
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).&lt;[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>** Array with matched emojis.
 
 # getUrl
 
-[gh-emoji.js:75-77](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L75-L77 "Source code on GitHub")
+[gh-emoji.js:99-101](https://github.com/zzarcon/gh-emoji/blob/424d13cf2dc39b5204ecbff82996c589729af383/gh-emoji.js#L99-L101 "Source code on GitHub")
 
 Return github's image url of emoji.
+
+**Parameters**
+
+-   `emojiId` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of emoji.
 
 **Examples**
 
@@ -86,7 +118,7 @@ Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 # load
 
-[gh-emoji.js:18-27](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L18-L27 "Source code on GitHub")
+[gh-emoji.js:38-47](https://github.com/zzarcon/gh-emoji/blob/424d13cf2dc39b5204ecbff82996c589729af383/gh-emoji.js#L38-L47 "Source code on GitHub")
 
 Fetch the emoji data from Github's api.
 
@@ -105,9 +137,14 @@ as keys and generated image tags as values to callback.
 
 # parse
 
-[gh-emoji.js:93-105](https://github.com/zzarcon/gh-emoji/blob/069b253aa001bf74891eb59779d76893d8fed2b4/gh-emoji.js#L93-L105 "Source code on GitHub")
+[gh-emoji.js:120-144](https://github.com/zzarcon/gh-emoji/blob/424d13cf2dc39b5204ecbff82996c589729af383/gh-emoji.js#L120-L144 "Source code on GitHub")
 
 Parse text and replace emoji tags with actual emoji symbols.
+
+**Parameters**
+
+-   `text` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Text to parse.
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Options with additional data for parser.
 
 **Examples**
 

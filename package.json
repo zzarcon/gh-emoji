@@ -1,6 +1,6 @@
 {
   "name": "gh-emoji",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Github emoji parsing done right",
   "main": "dist/gh-emoji.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "browserify": "^13.0.0",
     "eslint": "^2.6.0",
     "eslint-config-airbnb": "^6.2.0",
+    "fetch-mock": "^4.3.1",
     "ghooks": "^1.1.1",
     "relaser": "^0.2.0",
     "tap-spec": "^4.1.1",
