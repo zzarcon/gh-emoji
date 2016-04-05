@@ -10,6 +10,9 @@
     "docs": "npm run docs:intro && npm run docs:gen",
     "docs:gen": "documentation build -g -f md gh-emoji.js >> README.md",
     "docs:intro": "cat markdown/intro.md > README.md",
+    "pre-commit": "npm run pre-commit:eslint && npm run pre-commit:docs",
+    "pre-commit:eslint": "eslint gh-emoji.js",
+    "pre-commit:docs": "npm run docs",
     "test": "npm run test:browser",
     "test:browser": "browserify -t babelify test.js | tape-run | tap-spec"
   },
@@ -42,7 +45,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "eslint gh-emoji.js"
+      "pre-commit": "npm run pre-commit"
     }
   }
 }
