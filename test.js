@@ -1,14 +1,9 @@
 import { find, load, all, exist, getUrl, parse } from './gh-emoji';
-import tapeTest from 'tape';
+import fixtures from './fixtures';
+import fetchMock from 'fetch-mock';
+import test from 'tape';
 
-const before = () => {};
-
-const test = (title, cb) => {
-  tapeTest(title, (...args) => {
-    before();
-    cb(...args);
-  });
-};
+fetchMock.mock('https://api.github.com/emojis', 'GET', fixtures);
 
 test('all() before load()', assert => {
   assert.equal(all(), null, 'must return null');
@@ -16,7 +11,7 @@ test('all() before load()', assert => {
 });
 
 test('load', assert => {
-  load().then((emojis) => {
+  load().then(emojis => {
     assert.equal(typeof emojis, 'object', 'must resolve Object with emojis');
     assert.end();
   });
@@ -48,11 +43,16 @@ test('getUrl', assert => {
 });
 
 test('parse', assert => {
+  const testOptions = { classNames: 'some crazy  string with      classes' };
+
   assert.ok(parse('No emoji present') === 'No emoji present',
     'returns the same string if no emoji is present'
   );
   assert.ok(parse(':bicyclist:') === '<img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b4.png?v6" class="gh-emoji gh-emoji-bicyclist" alt="bicyclist" />',
     'string is properly parsed'
+  );
+  assert.ok(parse(':bicyclist:', testOptions) === '<img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b4.png?v6" class="gh-emoji gh-emoji-bicyclist some crazy string with classes" alt="bicyclist" />',
+    'string is properly parsed and passed classes are added to it'
   );
   assert.ok(parse('foo :barber: bar :bell:').includes(
     'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
