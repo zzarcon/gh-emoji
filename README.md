@@ -4,9 +4,9 @@
 Gh-emoji aims to be the simplest Github emoji parser. It's built on the top of the [Github Emoji Api](https://api.github.com/emojis) with **no dependencies** and having a couple of **functions as public api**.
 
 ## Installation
-`$ npm i gh-emoji` 
+`$ npm i gh-emoji`
 
-`$ bower i gh-emoji` 
+`$ bower i gh-emoji`
 
 ## Usage
 
@@ -25,7 +25,7 @@ load().then(() => {
 ## Demo
 Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 
-![](https://raw.githubusercontent.com/zzarcon/gh-emoji/master/gh-emoji-demo.gif)
+![](https://raw.githubusercontent.com/zzarcon/gh-emoji/master/assets/gh-emoji-demo.gif)
 
 ## Methods
 
@@ -36,7 +36,7 @@ Fetch the emoji data from Github
 import {load as loadEmojis} from 'gh-emoji';
 
 loadEmojis().then((emojis) => {
-  console.log(emojis['+1'] === 👍 === 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png?v6') 
+  console.log(emojis['+1'] === 👍 === 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png?v6')
 });
 ```
 
@@ -54,7 +54,7 @@ import {load, parse} from 'gh-emoji';
 
 const text = 'Do you believe in :alien:...? :scream:';
 load().then(() => {
-  console.log(parse(text) === 'Do you believe in 👽...? 😱'); 
+  console.log(parse(text) === 'Do you believe in 👽...? 😱');
 });
 
 ```
@@ -69,7 +69,7 @@ Return all existing emojis
 import {load, all} from 'gh-emoji';
 
 load().then(() => {
-  console.log(all()); 
+  console.log(all());
 });
 
 ```
@@ -87,7 +87,7 @@ Return github image url of the emojiId
 import {load, getUrl} from 'gh-emoji';
 
 load().then(() => {
-  console.log(getUrl('apple') === 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6'); 
+  console.log(getUrl('apple') === 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6');
 });
 
 ```
@@ -105,15 +105,15 @@ Return if the requested emoji exist
 import {load, exist} from 'gh-emoji';
 
 load().then(() => {
-  console.log(exist('foo')); // false 
-  console.log(exist('smile')); // true 
+  console.log(exist('foo')); // false
+  console.log(exist('smile')); // true
 });
 
 ```
 
 Returns **Boolean**
 
-## References 
+## References
 
 * Github Emoji Api docs: https://developer.github.com/v3/emojis/
 * Github Emoji Api: https://api.github.com/emojis
