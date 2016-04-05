@@ -16,25 +16,25 @@ test('all() before load()', assert => {
 });
 
 test('load', assert => {
-  load().then((emojis) => {
+  load().then(emojis => {
     assert.equal(typeof emojis, 'object', 'must resolve Object with emojis');
     assert.end();
   });
 });
 
-test('all() after load()', assert => {
+test('all() after load()', assert => load().then(() => {
   assert.equal(typeof all(), 'object', 'must return Object with emojis');
   assert.end();
-});
+}));
 
-test('exist', assert => {
+test('exist', assert => load().then(() => {
   assert.ok(exist('8ball'), '8ball emoji exists');
   assert.ok(exist('aries'), 'aries emoji exists');
   assert.ok(!exist('fakeEmoji'), 'fakeEmoji emoji does not exists');
   assert.end();
-});
+}));
 
-test('getUrl', assert => {
+test('getUrl', assert => load().then(() => {
   assert.ok(getUrl('angel').startsWith(
     'https://assets-cdn.github.com/images/icons/emoji/unicode/1f47c.png'),
     'angel emoji must return url'
@@ -45,9 +45,9 @@ test('getUrl', assert => {
   );
   assert.ok(!getUrl('fakeEmoji'), 'fakeEmoji emoji must not return url');
   assert.end();
-});
+}));
 
-test('parse', assert => {
+test('parse', assert => load().then(() => {
   assert.ok(parse('No emoji present') === 'No emoji present',
     'return the same string if no emoji is present'
   );
@@ -63,4 +63,4 @@ test('parse', assert => {
     'parsed string includes url of emoji'
   );
   assert.end();
-});
+}));
