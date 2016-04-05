@@ -1,4 +1,4 @@
-import { load, all, exist, getUrl, parse } from './gh-emoji';
+import { find, load, all, exist, getUrl, parse } from './gh-emoji';
 import tapeTest from 'tape';
 
 const before = () => {};
@@ -70,27 +70,25 @@ test('parse', assert => {
 });
 
 test('emoji regex', assert => {
-  const emojiRegex = /(\:[\w\-\+]+\:)/g;
-
-  assert.equal(':-1:'.match(emojiRegex).join(), ':-1:',
+  assert.equal(find(':-1:').join(), ':-1:',
     'works on emoji with symbol');
-  assert.equal(':+1:'.match(emojiRegex).join(), ':+1:',
+  assert.equal(find(':+1:').join(), ':+1:',
     'works on emoji with symbol');
-  assert.equal(':ab:'.match(emojiRegex).join(), ':ab:',
+  assert.equal(find(':ab:').join(), ':ab:',
     'works on emoji with letters');
 
-  assert.equal(' :-1:'.match(emojiRegex).join(), ':-1:',
+  assert.equal(find(' :-1:').join(), ':-1:',
     'works on emoji with whitespace before it');
-  assert.equal(':+1: '.match(emojiRegex).join(), ':+1:',
+  assert.equal(find(':+1: ').join(), ':+1:',
     'works on emoji with whitespace after it');
-  assert.equal(' :ab: '.match(emojiRegex).join(), ':ab:',
+  assert.equal(find(' :ab: ').join(), ':ab:',
     'works on emoji with whitespace surrounding it');
 
-  assert.equal('sticky:-1:'.match(emojiRegex).join(), ':-1:',
+  assert.equal(find('sticky:-1:').join(), ':-1:',
     'works on emoji with word sticked to it on the left side');
-  assert.equal(':+1:sticky'.match(emojiRegex).join(), ':+1:',
+  assert.equal(find(':+1:sticky').join(), ':+1:',
     'works on emoji with word sticked to it on the right side');
-  assert.equal('sticky:ab:sticky'.match(emojiRegex).join(), ':ab:',
+  assert.equal(find('sticky:ab:sticky').join(), ':ab:',
     'works on emoji with word sticked to it on the both sides');
 
   assert.end();
