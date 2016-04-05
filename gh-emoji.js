@@ -1,8 +1,12 @@
+/* @flow */
+
+import type { EmojiMap } from './types';
+
 const enpoint = 'https://api.github.com/emojis';
 const delimiterRegex = /(\:[\w\.]*\:)/g;
-let emojis = null;
+let emojis: ?EmojiMap = null;
 
-export function load() {
+export function load(): Promise<EmojiMap> {
   return new Promise((resolve) => {
     if (emojis) return resolve(emojis);
 
@@ -13,19 +17,31 @@ export function load() {
   });
 }
 
-export function all() {
+export function all(): ?EmojiMap {
   return emojis;
 }
 
-export function exist(emojiId) {
-  return !!all()[emojiId];
+export function exist(emojiId: string): boolean {
+  const emojis = all(); // eslint-disable-line no-shadow
+
+  if (emojis == null) {
+    return false;
+  }
+
+  return !!emojis[emojiId];
 }
 
-export function getUrl(emojiId) {
-  return all()[emojiId];
+export function getUrl(emojiId: string): ?string {
+  const emojis = all(); // eslint-disable-line no-shadow
+
+  if (emojis == null) {
+    return null;
+  }
+
+  return emojis[emojiId];
 }
 
-export function parse(text) {
+export function parse(text: string): string {
   let output = '';
   output += text.replace(delimiterRegex, (match) => {
     const id = match.replace(/:/g, '');
