@@ -44,7 +44,7 @@ Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 [MIT License](https://tldrlegal.com/license/mit-license) © zzarcon
 # all
 
-[gh-emoji.js:42-44](https://github.com/zzarcon/gh-emoji/blob/0a27a9667f27586e50b6a3e15b6e1552a3b72f49/gh-emoji.js#L42-L44 "Source code on GitHub")
+[gh-emoji.js:42-44](https://github.com/zzarcon/gh-emoji/blob/e30858ffdc08504d9a2e26d9411523fd190d6ed0/gh-emoji.js#L42-L44 "Source code on GitHub")
 
 Return all fetched emojis.
 
@@ -63,7 +63,7 @@ as values.
 
 # exist
 
-[gh-emoji.js:59-61](https://github.com/zzarcon/gh-emoji/blob/0a27a9667f27586e50b6a3e15b6e1552a3b72f49/gh-emoji.js#L59-L61 "Source code on GitHub")
+[gh-emoji.js:59-61](https://github.com/zzarcon/gh-emoji/blob/e30858ffdc08504d9a2e26d9411523fd190d6ed0/gh-emoji.js#L59-L61 "Source code on GitHub")
 
 Check if requested emoji exists.
 
@@ -82,7 +82,7 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 # getUrl
 
-[gh-emoji.js:75-77](https://github.com/zzarcon/gh-emoji/blob/0a27a9667f27586e50b6a3e15b6e1552a3b72f49/gh-emoji.js#L75-L77 "Source code on GitHub")
+[gh-emoji.js:75-77](https://github.com/zzarcon/gh-emoji/blob/e30858ffdc08504d9a2e26d9411523fd190d6ed0/gh-emoji.js#L75-L77 "Source code on GitHub")
 
 Return github's image url of emoji.
 
@@ -100,7 +100,7 @@ Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 # load
 
-[gh-emoji.js:18-27](https://github.com/zzarcon/gh-emoji/blob/0a27a9667f27586e50b6a3e15b6e1552a3b72f49/gh-emoji.js#L18-L27 "Source code on GitHub")
+[gh-emoji.js:18-27](https://github.com/zzarcon/gh-emoji/blob/e30858ffdc08504d9a2e26d9411523fd190d6ed0/gh-emoji.js#L18-L27 "Source code on GitHub")
 
 Fetch the emoji data from Github's api.
 
@@ -119,7 +119,7 @@ as keys and generated image tags as values to callback.
 
 # parse
 
-[gh-emoji.js:93-105](https://github.com/zzarcon/gh-emoji/blob/0a27a9667f27586e50b6a3e15b6e1552a3b72f49/gh-emoji.js#L93-L105 "Source code on GitHub")
+[gh-emoji.js:93-105](https://github.com/zzarcon/gh-emoji/blob/e30858ffdc08504d9a2e26d9411523fd190d6ed0/gh-emoji.js#L93-L105 "Source code on GitHub")
 
 Parse text and replace emoji tags with actual emoji symbols.
 
