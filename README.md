@@ -105,8 +105,8 @@ Return if the requested emoji exist
 import {load, exist} from 'gh-emoji';
 
 load().then(() => {
-  console.log(exist('foo') === false); 
-  console.log(exist('smile') === true); 
+  console.log(exist('foo')); // false 
+  console.log(exist('smile')); // true 
 });
 
 ```
