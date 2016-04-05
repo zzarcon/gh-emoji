@@ -29,6 +29,25 @@ Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 
 ## Methods
 
+### find
+Get array of all emojis' names found in text.
+
+**arguments**
+
+* `text` **_\<string\>_**
+
+```javascript
+import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
+
+const text = 'Do you believe in :alien:...? :scream:';
+
+loadEmojis().then(() => {
+  console.log(findEmojis(text)); // => [':alien:', ':scream:']
+});
+```
+
+Returns: **_Array\<string\>_**
+
 ### load
 Fetch the emoji data from Github
 
