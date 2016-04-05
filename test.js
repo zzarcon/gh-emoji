@@ -1,5 +1,9 @@
 import { load, all, exist, getUrl, parse } from './gh-emoji';
+import fixtures from './fixtures';
+import fetchMock from 'fetch-mock';
 import tapeTest from 'tape';
+
+fetchMock.mock('https://api.github.com/emojis', 'GET', fixtures);
 
 const before = () => {};
 
@@ -22,19 +26,19 @@ test('load', assert => {
   });
 });
 
-test('all() after load()', assert => load().then(() => {
+test('all() after load()', assert => {
   assert.equal(typeof all(), 'object', 'must return Object with emojis');
   assert.end();
-}));
+});
 
-test('exist', assert => load().then(() => {
+test('exist', assert => {
   assert.ok(exist('8ball'), '8ball emoji exists');
   assert.ok(exist('aries'), 'aries emoji exists');
   assert.ok(!exist('fakeEmoji'), 'fakeEmoji emoji does not exists');
   assert.end();
-}));
+});
 
-test('getUrl', assert => load().then(() => {
+test('getUrl', assert => {
   assert.ok(getUrl('angel').startsWith(
     'https://assets-cdn.github.com/images/icons/emoji/unicode/1f47c.png'),
     'angel emoji must return url'
@@ -45,9 +49,9 @@ test('getUrl', assert => load().then(() => {
   );
   assert.ok(!getUrl('fakeEmoji'), 'fakeEmoji emoji must not return url');
   assert.end();
-}));
+});
 
-test('parse', assert => load().then(() => {
+test('parse', assert => {
   assert.ok(parse('No emoji present') === 'No emoji present',
     'return the same string if no emoji is present'
   );
@@ -63,4 +67,4 @@ test('parse', assert => load().then(() => {
     'parsed string includes url of emoji'
   );
   assert.end();
-}));
+});
