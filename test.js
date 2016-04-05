@@ -1,18 +1,9 @@
 import { load, all, exist, getUrl, parse } from './gh-emoji';
 import fixtures from './fixtures';
 import fetchMock from 'fetch-mock';
-import tapeTest from 'tape';
+import test from 'tape';
 
 fetchMock.mock('https://api.github.com/emojis', 'GET', fixtures);
-
-const before = () => {};
-
-const test = (title, cb) => {
-  tapeTest(title, (...args) => {
-    before();
-    cb(...args);
-  });
-};
 
 test('all() before load()', assert => {
   assert.equal(all(), null, 'must return null');
