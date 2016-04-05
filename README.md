@@ -41,7 +41,7 @@ import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
 
 const text = 'Do you believe in :alien:...? :scream:';
 
-load().then(() => {
+loadEmojis().then(() => {
   console.log(findEmojis(text)); // => [':alien:', ':scream:']
 });
 ```
