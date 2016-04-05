@@ -49,18 +49,49 @@ test('getUrl', assert => {
 
 test('parse', assert => {
   assert.ok(parse('No emoji present') === 'No emoji present',
-    'return the same string if no emoji is present'
+    'returns the same string if no emoji is present'
   );
   assert.ok(parse(':bicyclist:') === '<img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b4.png?v6" class="gh-emoji gh-emoji-bicyclist" alt="bicyclist" />',
     'string is properly parsed'
   );
   assert.ok(parse('foo :barber: bar :bell:').includes(
-    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f514.png'),
-    'parsed string includes url of emoji'
-  );
-  assert.ok(parse('foo :barber: bar :bell:').includes(
     'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
     'parsed string includes url of emoji'
   );
+  assert.ok(parse('sticky:barber: bar :bell:').includes(
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
+    'parsed string includes url of emoji sticked to another word'
+  );
+  assert.ok(parse('sticky:barber:sticky :bell:').includes(
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
+    'parsed string includes url of emoji surrounded by two words'
+  );
+  assert.end();
+});
+
+test('emoji regex', assert => {
+  const emojiRegex = /(\:[\w\-\+]+\:)/g;
+
+  assert.equal(':-1:'.match(emojiRegex).join(), ':-1:',
+    'works on emoji with symbol');
+  assert.equal(':+1:'.match(emojiRegex).join(), ':+1:',
+    'works on emoji with symbol');
+  assert.equal(':ab:'.match(emojiRegex).join(), ':ab:',
+    'works on emoji with letters');
+
+  assert.equal(' :-1:'.match(emojiRegex).join(), ':-1:',
+    'works on emoji with whitespace before it');
+  assert.equal(':+1: '.match(emojiRegex).join(), ':+1:',
+    'works on emoji with whitespace after it');
+  assert.equal(' :ab: '.match(emojiRegex).join(), ':ab:',
+    'works on emoji with whitespace surrounding it');
+
+  assert.equal('sticky:-1:'.match(emojiRegex).join(), ':-1:',
+    'works on emoji with word sticked to it on the left side');
+  assert.equal(':+1:sticky'.match(emojiRegex).join(), ':+1:',
+    'works on emoji with word sticked to it on the right side');
+  assert.equal('sticky:ab:sticky'.match(emojiRegex).join(), ':ab:',
+    'works on emoji with word sticked to it on the both sides');
+
   assert.end();
 });

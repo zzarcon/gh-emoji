@@ -1,5 +1,5 @@
 const enpoint = 'https://api.github.com/emojis';
-const delimiterRegex = /(\:[\w\.]*\:)/g;
+const delimiterRegex = /(\:[\w\-\+]+\:)/g;
 let emojis = null;
 
 export function load() {
