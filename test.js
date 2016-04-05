@@ -1,4 +1,4 @@
-import { load, all, exist, getUrl, parse } from './gh-emoji';
+import { find, load, all, exist, getUrl, parse } from './gh-emoji';
 import fixtures from './fixtures';
 import fetchMock from 'fetch-mock';
 import test from 'tape';
@@ -46,7 +46,7 @@ test('parse', assert => {
   const testOptions = { classNames: 'some crazy  string with      classes' };
 
   assert.ok(parse('No emoji present') === 'No emoji present',
-    'return the same string if no emoji is present'
+    'returns the same string if no emoji is present'
   );
   assert.ok(parse(':bicyclist:') === '<img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b4.png?v6" class="gh-emoji gh-emoji-bicyclist" alt="bicyclist" />',
     'string is properly parsed'
@@ -55,12 +55,41 @@ test('parse', assert => {
     'string is properly parsed and passed classes are added to it'
   );
   assert.ok(parse('foo :barber: bar :bell:').includes(
-    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f514.png'),
-    'parsed string includes url of emoji'
-  );
-  assert.ok(parse('foo :barber: bar :bell:').includes(
     'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
     'parsed string includes url of emoji'
   );
+  assert.ok(parse('sticky:barber: bar :bell:').includes(
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
+    'parsed string includes url of emoji sticked to another word'
+  );
+  assert.ok(parse('sticky:barber:sticky :bell:').includes(
+    'https://assets-cdn.github.com/images/icons/emoji/unicode/1f488.png'),
+    'parsed string includes url of emoji surrounded by two words'
+  );
+  assert.end();
+});
+
+test('emoji regex', assert => {
+  assert.equal(find(':-1:').join(), ':-1:',
+    'works on emoji with symbol');
+  assert.equal(find(':+1:').join(), ':+1:',
+    'works on emoji with symbol');
+  assert.equal(find(':ab:').join(), ':ab:',
+    'works on emoji with letters');
+
+  assert.equal(find(' :-1:').join(), ':-1:',
+    'works on emoji with whitespace before it');
+  assert.equal(find(':+1: ').join(), ':+1:',
+    'works on emoji with whitespace after it');
+  assert.equal(find(' :ab: ').join(), ':ab:',
+    'works on emoji with whitespace surrounding it');
+
+  assert.equal(find('sticky:-1:').join(), ':-1:',
+    'works on emoji with word sticked to it on the left side');
+  assert.equal(find(':+1:sticky').join(), ':+1:',
+    'works on emoji with word sticked to it on the right side');
+  assert.equal(find('sticky:ab:sticky').join(), ':ab:',
+    'works on emoji with word sticked to it on the both sides');
+
   assert.end();
 });
