@@ -8,7 +8,7 @@
     "dist:babel": "babel gh-emoji.js --presets es2015 --out-file dist/gh-emoji.js",
     "dist:uglify": "uglifyjs dist/gh-emoji.js -o dist/gh-emoji.min.js",
     "test": "npm run test:browser",
-    "test:browser": "browserify -t babelify test.js | tape-run | tap-spec"
+    "test:browser": "browserify -t babelify ./test | tape-run | tap-spec"
   },
   "repository": {
     "type": "git",
