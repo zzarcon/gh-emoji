@@ -11,11 +11,11 @@ Gh-emoji aims to be the simplest Github emoji parser. It's built on the top of t
 # Usage
 
 ```javascript
-import {load, parse} from 'gh-emoji'
+import { load, parse } from 'gh-emoji'
 
 load().then(() => {
-  let editor = document.getElementById('editor');
-  let preview = document.getElementById('preview');
+  const editor = document.getElementById('editor');
+  const preview = document.getElementById('preview');
 
   preview.innerHTML = parse(editor.value);
 });
