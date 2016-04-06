@@ -1,0 +1,19 @@
+/* @flow */
+
+type EmojiMap = {[id: string]: string};
+
+declare function find(text: string): Array<string>;
+declare function load(): Promise<EmojiMap>;
+declare function all(): ?EmojiMap;
+declare function exist(emojiId: string): boolean;
+declare function parse(text: string): string;
+declare function getUrl(emojiId: string): string;
+
+export {
+  find,
+  load,
+  all,
+  exist,
+  parse,
+  getUrl,
+};

@@ -1,5 +1,31 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
+    define([], factory);
+  } else if (typeof exports !== "undefined") {
+    factory();
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory();
+    global.browser = mod.exports;
+  }
+})(this, function () {});
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define([], factory);
+  } else if (typeof exports !== "undefined") {
+    factory();
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory();
+    global.types = mod.exports;
+  }
+})(this, function () {});
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
     define(['exports'], factory);
   } else if (typeof exports !== "undefined") {
     factory(exports);
@@ -8,7 +34,7 @@
       exports: {}
     };
     factory(mod.exports);
-    global.ghEmoji = mod.exports;
+    global.index = mod.exports;
   }
 })(this, function (exports) {
   'use strict';
@@ -61,11 +87,23 @@
   }
 
   function exist(emojiId) {
-    return !!all()[emojiId];
+    var emojiMap = all();
+
+    if (emojiMap == null) {
+      return false;
+    }
+
+    return !!emojiMap[emojiId];
   }
 
   function getUrl(emojiId) {
-    return all()[emojiId];
+    var emojiMap = all();
+
+    if (emojiMap == null) {
+      return null;
+    }
+
+    return emojiMap[emojiId];
   }
 
   function parse(text) {
