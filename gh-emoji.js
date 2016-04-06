@@ -1,6 +1,6 @@
 /* @flow */
 
-import type { EmojiMap  } from './types';
+import type { EmojiMap } from './types';
 
 const enpoint = 'https://api.github.com/emojis';
 const delimiterRegex = /(\:[\w\-\+]+\:)/g;
