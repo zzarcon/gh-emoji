@@ -30,7 +30,7 @@ Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 # API
 # all
 
-[gh-emoji.js:70-72](https://github.com/zzarcon/gh-emoji/blob/9df2e4e1087fedbad43475c77b3dd400cc8614bf/gh-emoji.js#L70-L72 "Source code on GitHub")
+[gh-emoji.js:70-72](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L70-L72 "Source code on GitHub")
 
 Return all fetched emojis.
 
@@ -49,7 +49,7 @@ as values.
 
 # exist
 
-[gh-emoji.js:89-97](https://github.com/zzarcon/gh-emoji/blob/9df2e4e1087fedbad43475c77b3dd400cc8614bf/gh-emoji.js#L89-L97 "Source code on GitHub")
+[gh-emoji.js:89-97](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L89-L97 "Source code on GitHub")
 
 Check if requested emoji exists.
 
@@ -72,7 +72,7 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 # find
 
-[gh-emoji.js:29-31](https://github.com/zzarcon/gh-emoji/blob/9df2e4e1087fedbad43475c77b3dd400cc8614bf/gh-emoji.js#L29-L31 "Source code on GitHub")
+[gh-emoji.js:29-31](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L29-L31 "Source code on GitHub")
 
 Return array with matched emojis in text.
 
@@ -96,7 +96,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 # getUrl
 
-[gh-emoji.js:113-121](https://github.com/zzarcon/gh-emoji/blob/9df2e4e1087fedbad43475c77b3dd400cc8614bf/gh-emoji.js#L113-L121 "Source code on GitHub")
+[gh-emoji.js:113-121](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L113-L121 "Source code on GitHub")
 
 Return github's image url of emoji.
 
@@ -118,7 +118,7 @@ Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 # load
 
-[gh-emoji.js:46-55](https://github.com/zzarcon/gh-emoji/blob/9df2e4e1087fedbad43475c77b3dd400cc8614bf/gh-emoji.js#L46-L55 "Source code on GitHub")
+[gh-emoji.js:46-55](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L46-L55 "Source code on GitHub")
 
 Fetch the emoji data from Github's api.
 
@@ -137,7 +137,7 @@ as keys and generated image tags as values to callback.
 
 # parse
 
-[gh-emoji.js:142-166](https://github.com/zzarcon/gh-emoji/blob/9df2e4e1087fedbad43475c77b3dd400cc8614bf/gh-emoji.js#L142-L166 "Source code on GitHub")
+[gh-emoji.js:142-166](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L142-L166 "Source code on GitHub")
 
 Parse text and replace emoji tags with actual emoji symbols.
 
@@ -145,8 +145,8 @@ Parse text and replace emoji tags with actual emoji symbols.
 
 -   `text` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Text to parse.
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Options with additional data for parser.
-    -   `options.classNames` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** String with class names
-        separated with whitespace.
+    -   `options.classNames` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** String with custom class names
+        added to each emoji, separated with whitespace.
 
 **Examples**
 
