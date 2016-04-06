@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/findup.*
+.*/types-test\.js
+
+[include]
+
+[libs]
+interface/
+
+[options]
+
+[version]
+0.22.1
