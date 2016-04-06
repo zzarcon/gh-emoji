@@ -4,8 +4,9 @@
   "description": "Github emoji parsing done right",
   "main": "dist/gh-emoji.js",
   "scripts": {
-    "dist": "npm run dist:babel && npm run dist:uglify && cp definitions/*.js.flow dist",
-    "dist:babel": "babel gh-emoji.js --presets es2015 --out-file dist/gh-emoji.js",
+    "dist": "npm run dist:babel && npm run dist:uglify && npm run dist:flow",
+    "dist:babel": "babel ./src --presets es2015 --out-file dist/gh-emoji.js",
+    "dist:flow": "cp src/flow/definitions/*.js.flow dist",
     "dist:uglify": "uglifyjs dist/gh-emoji.js -o dist/gh-emoji.min.js",
     "test": "npm run test:browser",
     "test:browser": "browserify -t babelify ./test | tape-run | tap-spec"
