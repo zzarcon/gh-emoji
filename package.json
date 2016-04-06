@@ -1,10 +1,10 @@
 {
   "name": "gh-emoji",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Github emoji parsing done right",
   "main": "dist/gh-emoji.js",
   "scripts": {
-    "dist": "npm run dist:babel && npm run dist:uglify",
+    "dist": "npm run dist:babel && npm run dist:uglify && cp definitions/*.js.flow dist",
     "dist:babel": "babel gh-emoji.js --presets es2015 --out-file dist/gh-emoji.js",
     "dist:uglify": "uglifyjs dist/gh-emoji.js -o dist/gh-emoji.min.js",
     "test": "npm run test:browser",
@@ -33,6 +33,7 @@
     "eslint": "^2.6.0",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-flow-vars": "^0.2.1",
+    "fetch-mock": "^4.3.1",
     "ghooks": "^1.1.1",
     "relaser": "^0.2.0",
     "tap-spec": "^4.1.1",

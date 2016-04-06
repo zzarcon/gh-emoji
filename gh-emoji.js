@@ -3,8 +3,12 @@
 import type { EmojiMap } from './types';
 
 const enpoint = 'https://api.github.com/emojis';
-const delimiterRegex = /(\:[\w\.]*\:)/g;
-let emojis: ?EmojiMap = null;
+const delimiterRegex = /(\:[\w\-\+]+\:)/g;
+let emojis = null;
+
+export function find(text: string): Array<string> {
+  return text.match(delimiterRegex) || [];
+}
 
 export function load(): Promise<EmojiMap> {
   return new Promise((resolve) => {
@@ -22,34 +26,50 @@ export function all(): ?EmojiMap {
 }
 
 export function exist(emojiId: string): boolean {
-  const emojis = all(); // eslint-disable-line no-shadow
+  const emojiMap = all();
 
-  if (emojis == null) {
+  if (emojiMap == null) {
     return false;
   }
 
-  return !!emojis[emojiId];
+  return !!emojiMap[emojiId];
 }
 
 export function getUrl(emojiId: string): ?string {
-  const emojis = all(); // eslint-disable-line no-shadow
+  const emojiMap = all();
 
-  if (emojis == null) {
+  if (emojiMap == null) {
     return null;
   }
 
-  return emojis[emojiId];
+  return emojiMap[emojiId];
 }
 
-export function parse(text: string): string {
+type ParseOptions = {
+  classNames?: string,
+};
+
+export function parse(text: string, options: ParseOptions = {}): string {
   let output = '';
-  output += text.replace(delimiterRegex, (match) => {
-    const id = match.replace(/:/g, '');
-    if (exist(id)) {
-      const classNames = `gh-emoji gh-emoji-${id}`;
-      return `<img src="${getUrl(id)}" class="${classNames}" alt="${id}" />`;
+  const customClassNames = options.classNames ? options.classNames.trim().split(/\s+/) : '';
+
+  output += text.replace(delimiterRegex, match => {
+    const name = match.replace(/:/g, '');
+    const classNames = ['gh-emoji', `gh-emoji-${name}`];
+
+    if (!exist(name)) {
+      return match;
     }
-    return match;
+
+    if (customClassNames) {
+      classNames.push(...customClassNames);
+    }
+
+    const imageSrc = getUrl(name);
+    const imageClass = classNames.join(' ');
+    const imageAlt = name;
+
+    return `<img src="${imageSrc}" class="${imageClass}" alt="${imageAlt}" />`;
   });
 
   return output;
