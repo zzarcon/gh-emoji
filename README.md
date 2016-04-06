@@ -11,11 +11,11 @@ Gh-emoji aims to be the simplest Github emoji parser. It's built on the top of t
 # Usage
 
 ```javascript
-import {load, parse} from 'gh-emoji'
+import { load, parse } from 'gh-emoji'
 
 load().then(() => {
-  let editor = document.getElementById('editor');
-  let preview = document.getElementById('preview');
+  const editor = document.getElementById('editor');
+  const preview = document.getElementById('preview');
 
   preview.innerHTML = parse(editor.value);
 });
@@ -30,14 +30,14 @@ Take a look at the online [demo](http://zzarcon.github.io/gh-emoji/)
 # API
 # all
 
-[gh-emoji.js:70-72](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L70-L72 "Source code on GitHub")
+[gh-emoji.js:70-72](https://github.com/zzarcon/gh-emoji/blob/885fea177d8f9565b30fa853c7ab9318f258a6b3/gh-emoji.js#L70-L72 "Source code on GitHub")
 
 Return all fetched emojis.
 
 **Examples**
 
 ```javascript
-import {load as loadEmojis, all as allEmojis} from 'gh-emoji';
+import { load as loadEmojis, all as allEmojis } from 'gh-emoji';
 
 loadEmojis().then(() => {
   console.log(allEmojis()); // {emojiName: emojiImageTag}
@@ -49,7 +49,7 @@ as values.
 
 # exist
 
-[gh-emoji.js:89-97](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L89-L97 "Source code on GitHub")
+[gh-emoji.js:89-97](https://github.com/zzarcon/gh-emoji/blob/885fea177d8f9565b30fa853c7ab9318f258a6b3/gh-emoji.js#L89-L97 "Source code on GitHub")
 
 Check if requested emoji exists.
 
@@ -60,7 +60,7 @@ Check if requested emoji exists.
 **Examples**
 
 ```javascript
-import {load as loadEmojis, exist as emojiExists} from 'gh-emoji';
+import { load as loadEmojis, exist as emojiExists } from 'gh-emoji';
 
 loadEmojis().then(() => {
   console.log(emojiExists('foo')); // false
@@ -72,7 +72,7 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 # find
 
-[gh-emoji.js:29-31](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L29-L31 "Source code on GitHub")
+[gh-emoji.js:29-31](https://github.com/zzarcon/gh-emoji/blob/885fea177d8f9565b30fa853c7ab9318f258a6b3/gh-emoji.js#L29-L31 "Source code on GitHub")
 
 Return array with matched emojis in text.
 
@@ -83,7 +83,7 @@ Return array with matched emojis in text.
 **Examples**
 
 ```javascript
-import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
+import { load as loadEmojis, find as findEmojis } from 'gh-emoji';
 
 const text = 'Do you believe in :alien:...? :scream:';
 
@@ -96,7 +96,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 # getUrl
 
-[gh-emoji.js:113-121](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L113-L121 "Source code on GitHub")
+[gh-emoji.js:113-121](https://github.com/zzarcon/gh-emoji/blob/885fea177d8f9565b30fa853c7ab9318f258a6b3/gh-emoji.js#L113-L121 "Source code on GitHub")
 
 Return github's image url of emoji.
 
@@ -107,7 +107,7 @@ Return github's image url of emoji.
 **Examples**
 
 ```javascript
-import {load as loadEmojis, getUrl} from 'gh-emoji';
+import { load as loadEmojis, getUrl } from 'gh-emoji';
 
 loadEmojis().then(() => {
   console.log(getUrl('apple')); // 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6'
@@ -118,14 +118,14 @@ Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 # load
 
-[gh-emoji.js:46-55](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L46-L55 "Source code on GitHub")
+[gh-emoji.js:46-55](https://github.com/zzarcon/gh-emoji/blob/885fea177d8f9565b30fa853c7ab9318f258a6b3/gh-emoji.js#L46-L55 "Source code on GitHub")
 
 Fetch the emoji data from Github's api.
 
 **Examples**
 
 ```javascript
-import {load as loadEmojis} from 'gh-emoji';
+import { load as loadEmojis } from 'gh-emoji';
 
 loadEmojis().then((emojis) => {
   console.log(emojis['+1']); // 👍
@@ -137,7 +137,7 @@ as keys and generated image tags as values to callback.
 
 # parse
 
-[gh-emoji.js:142-166](https://github.com/zzarcon/gh-emoji/blob/c8767c098965fd44d0aacc2e1289489eba288eee/gh-emoji.js#L142-L166 "Source code on GitHub")
+[gh-emoji.js:142-166](https://github.com/zzarcon/gh-emoji/blob/885fea177d8f9565b30fa853c7ab9318f258a6b3/gh-emoji.js#L142-L166 "Source code on GitHub")
 
 Parse text and replace emoji tags with actual emoji symbols.
 
@@ -151,7 +151,7 @@ Parse text and replace emoji tags with actual emoji symbols.
 **Examples**
 
 ```javascript
-import {load as loadEmojis, parse} from 'gh-emoji';
+import { load as loadEmojis, parse } from 'gh-emoji';
 
 const text = 'Do you believe in :alien:...? :scream:';
 
