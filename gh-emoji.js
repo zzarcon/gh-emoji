@@ -134,6 +134,8 @@ export function getUrl(emojiId: string): ?string {
  *
  * @param {String} text Text to parse.
  * @param {Object} options Options with additional data for parser.
+ * @param {String} options.classNames String with class names
+ * separated with whitespace.
  *
  * @returns {String} Parsed text with emoji image tags in it.
  */
