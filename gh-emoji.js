@@ -1,6 +1,14 @@
+/* @flow */
+
+import type { EmojiMap } from './types';
+
 const enpoint = 'https://api.github.com/emojis';
 const delimiterRegex = /(\:[\w\-\+]+\:)/g;
 let emojis = null;
+
+type ParseOptions = {
+  classNames?: string,
+};
 
 /**
  * Return array with matched emojis in text.
@@ -18,7 +26,7 @@ let emojis = null;
  *
  * @returns {Array<String>} Array with matched emojis.
  */
-export function find(text) {
+export function find(text: string): Array<string> {
   return text.match(delimiterRegex) || [];
 }
 
@@ -35,7 +43,7 @@ export function find(text) {
  * @returns {Promise<Object>} Promise which passes Object with emoji names
  * as keys and generated image tags as values to callback.
  */
-export function load() {
+export function load(): Promise<EmojiMap> {
   return new Promise((resolve) => {
     if (emojis) return resolve(emojis);
 
@@ -59,7 +67,7 @@ export function load() {
  * @returns {Object} Object with emoji names as keys and generated image tags
  * as values.
  */
-export function all() {
+export function all(): ?EmojiMap {
   return emojis;
 }
 
@@ -78,8 +86,14 @@ export function all() {
  *
  * @returns {Boolean}
  */
-export function exist(emojiId) {
-  return !!all()[emojiId];
+export function exist(emojiId: string): boolean {
+  const emojiMap = all();
+
+  if (emojiMap == null) {
+    return false;
+  }
+
+  return !!emojiMap[emojiId];
 }
 
 /**
@@ -96,8 +110,14 @@ export function exist(emojiId) {
  *
  * @returns {String} Image url of given emoji.
  */
-export function getUrl(emojiId) {
-  return all()[emojiId];
+export function getUrl(emojiId: string): ?string {
+  const emojiMap = all();
+
+  if (emojiMap == null) {
+    return null;
+  }
+
+  return emojiMap[emojiId];
 }
 
 /**
@@ -117,7 +137,7 @@ export function getUrl(emojiId) {
  *
  * @returns {String} Parsed text with emoji image tags in it.
  */
-export function parse(text, options = {}) {
+export function parse(text: string, options: ParseOptions = {}): string {
   let output = '';
   const customClassNames = options.classNames ? options.classNames.trim().split(/\s+/) : '';
 
