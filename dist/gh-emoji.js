@@ -65,10 +65,39 @@
   var delimiterRegex = /(\:[\w\-\+]+\:)/g;
   var emojis = null;
 
+  /**
+   * Return array with matched emojis in text.
+   *
+   * @example
+   * import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
+   *
+   * const text = 'Do you believe in :alien:...? :scream:';
+   *
+   * loadEmojis().then((emojis) => {
+   *   console.log(findEmojis(text)); // [':alien:', ':scream:']
+   * });
+   *
+   * @param {String} text Text to search for emojis.
+   *
+   * @returns {Array<String>} Array with matched emojis.
+   */
   function find(text) {
     return text.match(delimiterRegex) || [];
   }
 
+  /**
+   * Fetch the emoji data from Github's api.
+   *
+   * @example
+   * import {load as loadEmojis} from 'gh-emoji';
+   *
+   * loadEmojis().then((emojis) => {
+   *   console.log(emojis['+1']); // 👍
+   * });
+   *
+   * @returns {Promise<Object>} Promise which passes Object with emoji names
+   * as keys and generated image tags as values to callback.
+   */
   function load() {
     return new Promise(function (resolve) {
       if (emojis) return resolve(emojis);
@@ -82,10 +111,38 @@
     });
   }
 
+  /**
+   * Return all fetched emojis.
+   *
+   * @example
+   * import {load as loadEmojis, all as allEmojis} from 'gh-emoji';
+   *
+   * loadEmojis().then(() => {
+   *   console.log(allEmojis()); // {emojiName: emojiImageTag}
+   * });
+   *
+   * @returns {Object} Object with emoji names as keys and generated image tags
+   * as values.
+   */
   function all() {
     return emojis;
   }
 
+  /**
+   * Check if requested emoji exists.
+   *
+   * @example
+   * import {load as loadEmojis, exist as emojiExists} from 'gh-emoji';
+   *
+   * loadEmojis().then(() => {
+   *   console.log(emojiExists('foo')); // false
+   *   console.log(emojiExists('smile')); // true
+   * });
+   *
+   * @param {String} emojiId Name of emoji.
+   *
+   * @returns {Boolean}
+   */
   function exist(emojiId) {
     var emojiMap = all();
 
@@ -96,6 +153,20 @@
     return !!emojiMap[emojiId];
   }
 
+  /**
+   * Return github's image url of emoji.
+   *
+   * @example
+   * import {load as loadEmojis, getUrl} from 'gh-emoji';
+   *
+   * loadEmojis().then(() => {
+   *   console.log(getUrl('apple')); // 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6'
+   * });
+   *
+   * @param {String} emojiId Name of emoji.
+   *
+   * @returns {String} Image url of given emoji.
+   */
   function getUrl(emojiId) {
     var emojiMap = all();
 
@@ -106,6 +177,25 @@
     return emojiMap[emojiId];
   }
 
+  /**
+   * Parse text and replace emoji tags with actual emoji symbols.
+   *
+   * @example
+   * import {load as loadEmojis, parse} from 'gh-emoji';
+   *
+   * const text = 'Do you believe in :alien:...? :scream:';
+   *
+   * loadEmojis().then(() => {
+   *   console.log(parse(text)) // 'Do you believe in 👽...? 😱';
+   * });
+   *
+   * @param {String} text Text to parse.
+   * @param {Object} options Options with additional data for parser.
+   * @param {String} options.classNames String with custom class names
+   * added to each emoji, separated with whitespace.
+   *
+   * @returns {String} Parsed text with emoji image tags in it.
+   */
   function parse(text) {
     var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
