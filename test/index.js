@@ -1,5 +1,5 @@
-import { find, load, all, exist, getUrl, parse } from './gh-emoji';
-import fixtures from './fixtures';
+import { find, load, all, exist, getUrl, parse } from '../gh-emoji';
+import fixtures from './helpers/fixtures';
 import fetchMock from 'fetch-mock';
 import test from 'tape';
 
