@@ -14,7 +14,7 @@ type ParseOptions = {
  * Return array with matched emojis in text.
  *
  * @example
- * import {load as loadEmojis, find as findEmojis} from 'gh-emoji';
+ * import { load as loadEmojis, find as findEmojis } from 'gh-emoji';
  *
  * const text = 'Do you believe in :alien:...? :scream:';
  *
@@ -34,7 +34,7 @@ export function find(text: string): Array<string> {
  * Fetch the emoji data from Github's api.
  *
  * @example
- * import {load as loadEmojis} from 'gh-emoji';
+ * import { load as loadEmojis } from 'gh-emoji';
  *
  * loadEmojis().then((emojis) => {
  *   console.log(emojis['+1']); // 👍
@@ -58,7 +58,7 @@ export function load(): Promise<EmojiMap> {
  * Return all fetched emojis.
  *
  * @example
- * import {load as loadEmojis, all as allEmojis} from 'gh-emoji';
+ * import { load as loadEmojis, all as allEmojis } from 'gh-emoji';
  *
  * loadEmojis().then(() => {
  *   console.log(allEmojis()); // {emojiName: emojiImageTag}
@@ -75,7 +75,7 @@ export function all(): ?EmojiMap {
  * Check if requested emoji exists.
  *
  * @example
- * import {load as loadEmojis, exist as emojiExists} from 'gh-emoji';
+ * import { load as loadEmojis, exist as emojiExists } from 'gh-emoji';
  *
  * loadEmojis().then(() => {
  *   console.log(emojiExists('foo')); // false
@@ -100,7 +100,7 @@ export function exist(emojiId: string): boolean {
  * Return github's image url of emoji.
  *
  * @example
- * import {load as loadEmojis, getUrl} from 'gh-emoji';
+ * import { load as loadEmojis, getUrl } from 'gh-emoji';
  *
  * loadEmojis().then(() => {
  *   console.log(getUrl('apple')); // 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v6'
@@ -124,7 +124,7 @@ export function getUrl(emojiId: string): ?string {
  * Parse text and replace emoji tags with actual emoji symbols.
  *
  * @example
- * import {load as loadEmojis, parse} from 'gh-emoji';
+ * import { load as loadEmojis, parse } from 'gh-emoji';
  *
  * const text = 'Do you believe in :alien:...? :scream:';
  *
