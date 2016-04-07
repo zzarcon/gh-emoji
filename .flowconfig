@@ -5,7 +5,7 @@
 [include]
 
 [libs]
-interface/
+src/flow/interfaces/
 
 [options]
 

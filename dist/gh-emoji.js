@@ -1,5 +1,18 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
+    define([], factory);
+  } else if (typeof exports !== "undefined") {
+    factory();
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory();
+    global.types = mod.exports;
+  }
+})(this, function () {});
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
     define(['exports'], factory);
   } else if (typeof exports !== "undefined") {
     factory(exports);
@@ -8,7 +21,7 @@
       exports: {}
     };
     factory(mod.exports);
-    global.ghEmoji = mod.exports;
+    global.index = mod.exports;
   }
 })(this, function (exports) {
   'use strict';
