@@ -57,7 +57,7 @@
       var xhr = new XMLHttpRequest();
 
       xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status !== 200) {
             return reject(xhr.responseText);
           }
@@ -72,28 +72,6 @@
       xhr.send();
     });
   };
-
-  if (!window.fetch) {
-    var _fetch = function _fetch(text) {
-      var _this = this;
-
-      return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              return resolve({ json: function json() {
-                  return JSON.parse(_this.responseText);
-                } });
-            }
-
-            reject(_this.responseText);
-          }
-        };
-      });
-    };
-  }
 
   /**
    * Return array with matched emojis in text.
