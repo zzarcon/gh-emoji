@@ -52,6 +52,27 @@
   var delimiterRegex = /(\:[\w\-\+]+\:)/g;
   var emojis = null;
 
+  var fetch = window.fetch || function (endpoint) {
+    return new Promise(function (resolve, reject) {
+      var xhr = new XMLHttpRequest();
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status !== 200) {
+            return reject(xhr.responseText);
+          }
+
+          return resolve({ json: function json() {
+              return JSON.parse(xhr.responseText);
+            } });
+        }
+      };
+
+      xhr.open('GET', endpoint, true);
+      xhr.send();
+    });
+  };
+
   /**
    * Return array with matched emojis in text.
    *
