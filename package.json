@@ -38,6 +38,7 @@
     "babelify": "^7.2.0",
     "browser-run": "^3.1.0",
     "browserify": "^13.0.0",
+    "documentation": "^4.0.0-beta2",
     "eslint": "^2.6.0",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-flow-vars": "^0.2.1",
