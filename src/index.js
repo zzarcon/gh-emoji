@@ -11,7 +11,7 @@ const fetch = window.fetch || (endpoint: string) : Promise <Object> => {
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status !== 200) {
           return reject(xhr.responseText);
         }
@@ -28,24 +28,6 @@ const fetch = window.fetch || (endpoint: string) : Promise <Object> => {
 type ParseOptions = {
   classNames?: string,
 };
-
-if (!window.fetch) {
-  function fetch(text: string): Promise < Object > {
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            return resolve({json: () => JSON.parse(this.responseText)});
-          }
-
-          reject(this.responseText);
-        }
-      };
-    });
-  }
-}
 
 /**
  * Return array with matched emojis in text.
