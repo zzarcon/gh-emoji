@@ -10,6 +10,24 @@ type ParseOptions = {
   classNames?: string,
 };
 
+if (!window.fetch) {
+  function fetch(text: string): Promise < Object > {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            return resolve({json: () => JSON.parse(this.responseText)});
+          }
+
+          reject(this.responseText);
+        }
+      };
+    });
+  }
+}
+
 /**
  * Return array with matched emojis in text.
  *
