@@ -6,6 +6,25 @@ const enpoint = 'https://api.github.com/emojis';
 const delimiterRegex = /(\:[\w\-\+]+\:)/g;
 let emojis = null;
 
+const fetch = window.fetch || (function fetchPolyfill(endpoint: string): Promise <Object> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status !== 200) {
+          return reject(this.responseText);
+        }
+
+        return resolve({ json: () => JSON.parse(this.responseText) });
+      }
+    };
+
+    xhr.open('GET', endpoint, true);
+    xhr.send();
+  });
+}());
+
 type ParseOptions = {
   classNames?: string,
 };
