@@ -63,13 +63,13 @@ export function find(text: string): Array<string> {
  * as keys and generated image tags as values to callback.
  */
 export function load(): Promise<EmojiMap> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     if (emojis) return resolve(emojis);
 
     return fetch(enpoint).then(r => r.json()).then((response) => {
       emojis = response;
       resolve(emojis);
-    });
+    }).catch(reject);
   });
 }
 
