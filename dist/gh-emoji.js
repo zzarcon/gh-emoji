@@ -51,7 +51,17 @@
   var enpoint = 'https://api.github.com/emojis';
   var delimiterRegex = /(\:[\w\-\+]+\:)/g;
   var emojis = null;
+  
+  /**
+   ** New Http Request is generated
+   * 
+   * if Request status is not OK(200) then reject the text coming
+   * 
+   * otherwise parse the text coming in JSON format
+   * 
+   * Get request is generated and sent to github api of emojis
 
+  */
   var fetch = window.fetch || function (endpoint) {
     return new Promise(function (resolve, reject) {
       var xhr = new XMLHttpRequest();
