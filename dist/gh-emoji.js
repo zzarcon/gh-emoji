@@ -35,7 +35,14 @@
   exports.exist = exist;
   exports.getUrl = getUrl;
   exports.parse = parse;
+  
+/**
+ * main array is passed (arr) 
+ * a new temp array is made (arr2)
+ * copy all from arr1 to arr2
+ * return second array arr2
 
+**/
   function _toConsumableArray(arr) {
     if (Array.isArray(arr)) {
       for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
