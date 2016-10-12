@@ -35,7 +35,14 @@
   exports.exist = exist;
   exports.getUrl = getUrl;
   exports.parse = parse;
+  
+/**
+ * main array is passed (arr) 
+ * a new temp array is made (arr2)
+ * copy all from arr1 to arr2
+ * return second array arr2
 
+**/
   function _toConsumableArray(arr) {
     if (Array.isArray(arr)) {
       for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
@@ -51,7 +58,17 @@
   var enpoint = 'https://api.github.com/emojis';
   var delimiterRegex = /(\:[\w\-\+]+\:)/g;
   var emojis = null;
+  
+  /**
+   ** New Http Request is generated
+   * 
+   * if Request status is not OK(200) then reject the text coming
+   * 
+   * otherwise parse the text coming in JSON format
+   * 
+   * Get request is generated and sent to github api of emojis
 
+  */
   var fetch = window.fetch || function (endpoint) {
     return new Promise(function (resolve, reject) {
       var xhr = new XMLHttpRequest();
